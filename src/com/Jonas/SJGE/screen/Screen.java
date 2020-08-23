@@ -17,6 +17,8 @@ public class Screen extends Canvas {
 	
 	private Bitmap screen;
 	
+	private Bitmap pattern;
+	
 	public Screen() {
 		setSize(new Dimension(WIDTH * SCALE, HEIGHT * SCALE));
 		
@@ -24,7 +26,13 @@ public class Screen extends Canvas {
 		pixels = ((DataBufferInt) img.getRaster().getDataBuffer()).getData();
 		
 		screen = new Bitmap(WIDTH, HEIGHT);
-		screen.pixels[10+10*WIDTH] = 0xff00ff;
+		
+		pattern = new Bitmap(64, 64);
+		for (int y = 0; y < 64; y++) {
+			for (int x = 0; x < 64; x++) {
+				pattern.pixels[x + y * 64] = (x << 18) | (y << 2);
+			}
+		}
 	}
 	
 	public void render() {
@@ -35,6 +43,8 @@ public class Screen extends Canvas {
 		}
 		
 		//Render Screen
+		renderGame();
+		
 		for (int i = 0; i < WIDTH * HEIGHT; i++) {
 			pixels[i] = screen.pixels[i];
 		}
@@ -44,5 +54,9 @@ public class Screen extends Canvas {
 		graphics.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), null);
 		graphics.dispose();
 		bs.show();
+	}
+	
+	public void renderGame() {
+		screen.draw(pattern, -32, -32);
 	}
 }
