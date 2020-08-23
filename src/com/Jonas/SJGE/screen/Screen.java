@@ -57,6 +57,6 @@ public class Screen extends Canvas {
 	}
 	
 	public void renderGame() {
-		screen.draw(pattern, -32, -32);
+		screen.draw(ImageLoader.pattern, 0, 0);
 	}
 }

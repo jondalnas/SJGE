@@ -5,6 +5,7 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import com.Jonas.SJGE.screen.ImageLoader;
 import com.Jonas.SJGE.screen.Screen;
 
 public class Main implements Runnable {
@@ -13,6 +14,8 @@ public class Main implements Runnable {
 	private Thread thread;
 	
 	public Main() {
+		new ImageLoader();
+		
 		game = new Game();
 	}
 	
@@ -25,9 +28,9 @@ public class Main implements Runnable {
 		panel.add(screen, 0);
 		
 		frame.setContentPane(panel);
+		frame.setResizable(false);
 		frame.pack();
 		frame.setLocationRelativeTo(null);
-		frame.setResizable(false);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 		
