@@ -47,6 +47,7 @@ public class Screen extends Canvas {
 		
 		for (int i = 0; i < WIDTH * HEIGHT; i++) {
 			pixels[i] = screen.pixels[i];
+			screen.pixels[i] = 0;
 		}
 		
 		Graphics graphics = bs.getDrawGraphics();
@@ -56,7 +57,9 @@ public class Screen extends Canvas {
 		bs.show();
 	}
 	
+	int tick;
 	public void renderGame() {
-		screen.draw(ImageLoader.pattern, 0, 0);
+		tick++;
+		screen.draw(ImageLoader.pattern, WIDTH/2, HEIGHT/2, 0, 0, 64, 64, (int) (tick / 100.0));
 	}
 }
