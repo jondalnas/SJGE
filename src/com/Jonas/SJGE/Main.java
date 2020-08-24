@@ -6,26 +6,25 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import com.Jonas.SJGE.screen.ImageLoader;
-import com.Jonas.SJGE.screen.Screen;
+import com.Jonas.SJGE.screen.Renderer;
 
 public class Main implements Runnable {
-	private static Screen screen;
+	private static Renderer renderer;
 	private static Game game;
 	private Thread thread;
 	
 	public Main() {
 		new ImageLoader();
-		
-		game = new Game();
 	}
 	
 	public static void main(String[] args) {
-		screen = new Screen();
+		game = new Game();
+		renderer = new Renderer(game);
 		
 		JFrame frame = new JFrame("Engine");
 		JPanel panel = new JPanel(new BorderLayout());
 		
-		panel.add(screen, 0);
+		panel.add(renderer, 0);
 		
 		frame.setContentPane(panel);
 		frame.setResizable(false);
@@ -45,7 +44,7 @@ public class Main implements Runnable {
 	public void run() {
 		while(true) {
 			game.update();
-			screen.render();
+			renderer.render();
 		}
 	}
 }

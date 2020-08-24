@@ -8,6 +8,7 @@ import javax.imageio.ImageIO;
 
 public class ImageLoader {
 	public static Bitmap pattern = loadImage("res/img/pattern.png");
+	public static Bitmap tilemap = loadImage("res/img/Tilemap.png");
 	
 	private static Bitmap loadImage(String location) {
 		BufferedImage bi;
