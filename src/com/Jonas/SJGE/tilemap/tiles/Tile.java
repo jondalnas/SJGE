@@ -19,6 +19,6 @@ public abstract class Tile {
 	public abstract void render(Screen screen);
 	
 	protected void renderTile(Screen screen) {
-		screen.screen.draw(ImageLoader.tilemap, x * Tilemap.TILE_SIZE, y * Tilemap.TILE_SIZE, (tilemapLocation % 16) * Tilemap.TILE_SIZE, (tilemapLocation / 16) * Tilemap.TILE_SIZE, Tilemap.TILE_SIZE, Tilemap.TILE_SIZE);
+		screen.screen.draw(ImageLoader.tilemap, x * Tilemap.TILE_SIZE + (int) game.cam.x, y * Tilemap.TILE_SIZE + (int) game.cam.y, (tilemapLocation % 16) * Tilemap.TILE_SIZE, (tilemapLocation / 16) * Tilemap.TILE_SIZE, Tilemap.TILE_SIZE, Tilemap.TILE_SIZE);
 	}
 }
