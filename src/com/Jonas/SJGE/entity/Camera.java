@@ -1,10 +1,11 @@
 package com.Jonas.SJGE.entity;
 
 import com.Jonas.SJGE.Game;
+import com.Jonas.SJGE.Main;
 import com.Jonas.SJGE.screen.Screen;
 
 public class Camera extends Entity {
-	private final double CAM_SPEED = 0.01;
+	private final double CAM_SPEED = 61.5;
 
 	public Camera(Game game) {
 		super(game);
@@ -21,8 +22,8 @@ public class Camera extends Entity {
 		dx /= d;
 		dy /= d;
 		
-		x += dx * CAM_SPEED;
-		y += dy * CAM_SPEED;
+		x += dx * CAM_SPEED * Main.getDeltaTime();
+		y += dy * CAM_SPEED * Main.getDeltaTime();
 	}
 
 	public void render(Screen screen) {
