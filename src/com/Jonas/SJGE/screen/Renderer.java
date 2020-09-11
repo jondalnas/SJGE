@@ -19,5 +19,7 @@ public class Renderer extends Screen {
 		for (Entity e : game.entities) {
 			e.render(this);
 		}
+		
+		screen.draw(0xff00ff, 0, 0, 10, 10);
 	}
 }

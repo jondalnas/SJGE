@@ -150,4 +150,34 @@ public class Bitmap {
 			}
 		}
 	}
+	
+	public void fill(int color, int x0, int y0, int w, int h) {
+		for (int yy = 0; yy < h; yy++) {
+			int y = y0 + yy;
+			if (y < 0 || y >= height) continue; //Could be optimized
+			
+			for (int xx = 0; xx < w; xx++) {
+				int x = x0 + xx;
+				if (x < 0 || x >= width) continue; //Could be optimized
+				
+				pixels[x + y * width] = color;
+			}	
+		}
+	}
+	
+	public void draw(int color, int x0, int y0, int w, int h) {
+		for (int yy = 0; yy < h; yy++) {
+			int y = y0 + yy;
+			if (y < 0 || y >= height) continue;
+			
+			for (int xx = 0; xx < w; xx++) {
+				int x = x0 + xx;
+				if (x < 0 || x >= width) continue;
+				
+				if (y != 0 && x != 0 && y != h-1 && x != w-1) continue;
+				
+				pixels[x + y * width] = color;
+			}	
+		}
+	}
 }
