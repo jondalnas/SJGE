@@ -5,27 +5,32 @@ import com.Jonas.SJGE.screen.Screen;
 import com.Jonas.SJGE.tilemap.tiles.Grass;
 import com.Jonas.SJGE.tilemap.tiles.Rock;
 import com.Jonas.SJGE.tilemap.tiles.Tile;
+import com.Jonas.SJGE.tilemap.tiles.Tree;
 
 public class Tilemap {
 	private final Tile[] tilemap;
 	private final int width, height;
 	public static final int TILE_SIZE = 16;
 	
+	private Game game;
+	
 	public static Tile OOB_TILE;
 	
 	public Tilemap(Game game, int width, int height) {
-		OOB_TILE = new Rock(game, -1, -1);
+		OOB_TILE = new Tree(game);
 		this.width = width;
 		this.height = height;
+		
+		this.game = game;
 		
 		tilemap = new Tile[width * height];
 		for (int y = 0; y < height; y++) {
 			for (int x = 0; x < width; x++) {
-				tilemap[x+y*width] = new Grass(game, x, y);
+				tilemap[x+y*width] = new Grass(game);
 			}
 		}
 		
-		tilemap[1+width*1] = new Rock(game, 1, 1);
+		tilemap[1+width*1] = new Rock(game);
 	}
 	
 	public void tick() {
@@ -35,8 +40,15 @@ public class Tilemap {
 	}
 	
 	public void render(Screen screen) {
-		for (int i = 0; i < width * height; i++) {
-			tilemap[i].render(screen);
+		int x0 = game.cam.x / TILE_SIZE - 1;
+		int y0 = game.cam.y / TILE_SIZE - 1;
+		int x1 = (game.cam.x + Screen.WIDTH) / TILE_SIZE + 1;
+		int y1 = (game.cam.y + Screen.HEIGHT) / TILE_SIZE + 1;
+		
+		for (int y = y0; y < y1; y++) {
+			for (int x = x0; x < x1; x++) {
+				getTile(x, y).render(screen, x, y);
+			}
 		}
 	}
 	

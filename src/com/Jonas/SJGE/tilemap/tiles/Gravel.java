@@ -5,8 +5,8 @@ import com.Jonas.SJGE.screen.Screen;
 
 public class Gravel extends Tile {
 
-	public Gravel(Game game, int x, int y) {
-		super(game, x, y);
+	public Gravel(Game game) {
+		super(game);
 		
 		tilemapLocation = 1+0*16;
 	}
@@ -14,7 +14,7 @@ public class Gravel extends Tile {
 	public void tick() {
 	}
 
-	public void render(Screen screen) {
-		renderTile(screen);
+	public void render(Screen screen, int x, int y) {
+		renderTile(screen, x, y);
 	}
 }
