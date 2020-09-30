@@ -12,6 +12,9 @@ public class Camera extends Entity {
 
 		xColOffs = (int) (Screen.WIDTH  / 2 - sizeD / 2.0);
 		yColOffs = (int) (Screen.HEIGHT / 2 - sizeD / 2.0);
+
+		x = -xColOffs;
+		y = -yColOffs;
 	}
 
 	public void update() {
@@ -22,6 +25,10 @@ public class Camera extends Entity {
 		dy *= Math.round(CAM_SPEED * Main.getDeltaTime());
 		
 		move();
+	}
+	
+	public boolean collide(Entity e) {
+		return true;
 	}
 
 	public void render(Screen screen) {
