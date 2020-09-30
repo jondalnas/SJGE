@@ -20,6 +20,6 @@ public class Renderer extends Screen {
 			e.render(this);
 		}
 		
-		screen.draw(0xff00ff, 0, 0, 10, 10);
+		game.cam.render(this);
 	}
 }

@@ -8,7 +8,7 @@ public class Gravel extends Tile {
 	public Gravel(Game game, int x, int y) {
 		super(game, x, y);
 		
-		tilemapLocation = 1+1*16;
+		tilemapLocation = 1+0*16;
 	}
 
 	public void tick() {

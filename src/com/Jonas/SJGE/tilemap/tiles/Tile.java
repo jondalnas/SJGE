@@ -9,6 +9,9 @@ public abstract class Tile {
 	protected int x, y;
 	protected int tilemapLocation;
 	protected Game game;
+	
+	public boolean solid = false;
+	
 	public Tile(Game game, int x, int y) {
 		this.x = x;
 		this.y = y;
@@ -17,8 +20,11 @@ public abstract class Tile {
 	
 	public abstract void tick();
 	public abstract void render(Screen screen);
-	
+
 	protected void renderTile(Screen screen) {
-		screen.screen.draw(ImageLoader.tilemap, x * Tilemap.TILE_SIZE + (int) game.cam.x, y * Tilemap.TILE_SIZE + (int) game.cam.y, (tilemapLocation % 16) * Tilemap.TILE_SIZE, (tilemapLocation / 16) * Tilemap.TILE_SIZE, Tilemap.TILE_SIZE, Tilemap.TILE_SIZE);
+		renderTile(screen, tilemapLocation);
+	}
+	protected void renderTile(Screen screen, int tilemapLocation) {
+		screen.screen.draw(ImageLoader.tilemap, x * Tilemap.TILE_SIZE - (int) game.cam.x, y * Tilemap.TILE_SIZE - (int) game.cam.y, (tilemapLocation % 16) * Tilemap.TILE_SIZE, (tilemapLocation / 16) * Tilemap.TILE_SIZE, Tilemap.TILE_SIZE, Tilemap.TILE_SIZE);
 	}
 }

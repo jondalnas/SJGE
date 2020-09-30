@@ -3,7 +3,7 @@ package com.Jonas.SJGE.tilemap;
 import com.Jonas.SJGE.Game;
 import com.Jonas.SJGE.screen.Screen;
 import com.Jonas.SJGE.tilemap.tiles.Grass;
-import com.Jonas.SJGE.tilemap.tiles.Gravel;
+import com.Jonas.SJGE.tilemap.tiles.Rock;
 import com.Jonas.SJGE.tilemap.tiles.Tile;
 
 public class Tilemap {
@@ -11,7 +11,10 @@ public class Tilemap {
 	private final int width, height;
 	public static final int TILE_SIZE = 16;
 	
+	public static Tile OOB_TILE;
+	
 	public Tilemap(Game game, int width, int height) {
+		OOB_TILE = new Rock(game, -1, -1);
 		this.width = width;
 		this.height = height;
 		
@@ -22,7 +25,7 @@ public class Tilemap {
 			}
 		}
 		
-		tilemap[0] = new Gravel(game, 0, 0);
+		tilemap[1+width*1] = new Rock(game, 1, 1);
 	}
 	
 	public void tick() {
@@ -38,6 +41,7 @@ public class Tilemap {
 	}
 	
 	public Tile getTile(int x, int y) {
+		if (x < 0 || y < 0 || x >= width || y >= height) return OOB_TILE;
 		return tilemap[x + y * width];
 	}
 	

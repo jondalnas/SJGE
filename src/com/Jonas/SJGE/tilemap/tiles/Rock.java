@@ -8,12 +8,14 @@ public class Rock extends Tile {
 	public Rock(Game game, int x, int y) {
 		super(game, x, y);
 		tilemapLocation = 0+1*16;
+		solid = true;
 	}
 
 	public void tick() {
 	}
 
 	public void render(Screen screen) {
+		renderTile(screen, 0);
 		renderTile(screen);
 	}
 }

@@ -30,7 +30,10 @@ public class Bitmap {
 				int xx = x + x0;
 				if (xx < 0 || xx >= width) continue;
 				
-				pixels[xx + yy * width] = bitmap.pixels[x + y * bitmap.width];
+				int col = bitmap.pixels[x + y * bitmap.width];
+				if (col == 0xff00ff) continue;
+				
+				pixels[xx + yy * width] = col;
 			}
 		}
 	}
@@ -46,11 +49,14 @@ public class Bitmap {
 			for (int x = 0; x < wi; x++) {
 				int xp = x + xi;
 				if (xp < 0 || xp >= bitmap.width) continue;
-
+				
+				int col = bitmap.pixels[xp + yp * bitmap.width];
+				if (col == 0xff00ff) continue;
+				
 				int xx = x + x0;
 				if (xx < 0 || xx >= width) continue;
 				
-				pixels[xx + yy * width] = bitmap.pixels[xp + yp * bitmap.width];
+				pixels[xx + yy * width] = col;
 			}
 		}
 	}
@@ -69,11 +75,14 @@ public class Bitmap {
 			for (int x = 0; x < w; x++) {
 				int xp = (int) (x * xScale) + xi;
 				if (xp < 0 || xp >= bitmap.width) continue;
+				
+				int col = bitmap.pixels[xp + yp * bitmap.width];
+				if (col == 0xff00ff) continue;
 
 				int xx = x + x0;
 				if (xx < 0 || xx >= width) continue;
 				
-				pixels[xx + yy * width] = bitmap.pixels[xp + yp * bitmap.width];
+				pixels[xx + yy * width] = col;
 			}
 		}
 	}
@@ -96,6 +105,9 @@ public class Bitmap {
 			for (int x = 0; x < wi; x++) {
 				int xp = x + xi;
 				if (xp < 0 || xp >= bitmap.width) continue;
+				
+				int col = bitmap.pixels[xp + yp * bitmap.width];
+				if (col == 0xff00ff) continue;
 
 				int xx = (int) ((x - wi / 2) * cos - (y - hi / 2) * sin) + x0;
 				if (xx < 0 || xx >= width) continue;
@@ -103,7 +115,7 @@ public class Bitmap {
 				int yy = (int) ((x - wi / 2) * sin + (y - hi / 2) * cos) + y0;
 				if (yy < 0 || yy >= height) continue;
 				
-				pixels[xx + yy * width] = bitmap.pixels[xp + yp * bitmap.width];
+				pixels[xx + yy * width] = col;
 			}
 		}
 	}
@@ -139,6 +151,9 @@ public class Bitmap {
 			for (int x = 0; x < wi; x++) {
 				int xp = x + xi;
 				if (xp < 0 || xp >= bitmap.width) continue;
+				
+				int col = bitmap.pixels[xp + yp * bitmap.width];
+				if (col == 0xff00ff) continue;
 
 				int xx = (int) ((x - wi / 2) * cos - (y - hi / 2) * sin) + x0;
 				if (xx < 0 || xx >= width) continue;
@@ -146,7 +161,7 @@ public class Bitmap {
 				int yy = (int) ((x - wi / 2) * sin + (y - hi / 2) * cos) + y0;
 				if (yy < 0 || yy >= height) continue;
 				
-				pixels[xx + yy * width] = bitmap.pixels[xp + yp * bitmap.width];
+				pixels[xx + yy * width] = col;
 			}
 		}
 	}
@@ -174,7 +189,7 @@ public class Bitmap {
 				int x = x0 + xx;
 				if (x < 0 || x >= width) continue;
 				
-				if (y != 0 && x != 0 && y != h-1 && x != w-1) continue;
+				if (yy != 0 && xx != 0 && yy != h-1 && xx != w-1) continue;
 				
 				pixels[x + y * width] = color;
 			}	
