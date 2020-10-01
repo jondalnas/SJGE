@@ -17,7 +17,7 @@ public class Game {
 	public Game() {
 		input = new Input();
 		cam = new Camera(this);
-		tilemap = new Tilemap(this, 64, 64);
+		tilemap = new Tilemap(this);
 		
 		addEntity(new BigTree(this, 64, 64));
 	}

@@ -3,7 +3,6 @@ package com.Jonas.SJGE.tilemap;
 import com.Jonas.SJGE.Game;
 import com.Jonas.SJGE.screen.Screen;
 import com.Jonas.SJGE.tilemap.tiles.Grass;
-import com.Jonas.SJGE.tilemap.tiles.Rock;
 import com.Jonas.SJGE.tilemap.tiles.Tile;
 import com.Jonas.SJGE.tilemap.tiles.Tree;
 
@@ -16,21 +15,15 @@ public class Tilemap {
 	
 	public static Tile OOB_TILE;
 	
-	public Tilemap(Game game, int width, int height) {
+	public Tilemap(Game game) {
 		OOB_TILE = new Tree(game);
-		this.width = width;
-		this.height = height;
 		
 		this.game = game;
 		
-		tilemap = new Tile[width * height];
-		for (int y = 0; y < height; y++) {
-			for (int x = 0; x < width; x++) {
-				tilemap[x+y*width] = new Grass(game);
-			}
-		}
-		
-		tilemap[1+width*1] = new Rock(game);
+		TilemapLoader.LoadedMap loadedMap = TilemapLoader.load("res/lvl/level 1.png", game);
+		tilemap = loadedMap.getTilemap();
+		width = loadedMap.getWidth();
+		height = loadedMap.getHeight();
 	}
 	
 	public void tick() {
