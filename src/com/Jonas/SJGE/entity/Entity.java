@@ -33,7 +33,7 @@ public abstract class Entity {
 
 				for (int xt = x0; xt <= x1; xt++) {
 					for (int yt = y0; yt <= y1; yt++) {
-						if (game.tilemap.getTile(xt, yt).solid) break dx;
+						if (game.tilemap.getTile(xt, yt).solid) continue dx;
 					}
 				}
 
@@ -44,7 +44,7 @@ public abstract class Entity {
 						e.y + e.yColOffs + e.sizeD < y + yColOffs + 1) continue;
 					
 					if (e.collide(this))
-						break dx;
+						continue dx;
 				}
 				
 				x = x2;
@@ -53,8 +53,8 @@ public abstract class Entity {
 			}
 		}
 		
-		dy:
 		if (dy != 0) {
+			dy:
 			for (int yy = dy * (dy < 0 ? -1 : 1); yy > 0; yy--) {
 				int y2 = y + yy * (dy < 0 ? -1 : 1);
 				
@@ -67,7 +67,7 @@ public abstract class Entity {
 				
 				for (int xt = x0; xt <= x1; xt++) {
 					for (int yt = y0; yt <= y1; yt++) {
-						if (game.tilemap.getTile(xt, yt).solid) break dy;
+						if (game.tilemap.getTile(xt, yt).solid) continue dy;
 					}
 				}
 				
@@ -78,7 +78,7 @@ public abstract class Entity {
 						e.y + e.yColOffs + e.sizeD < y2 + yColOffs + 1) continue;
 					
 					if (e.collide(this))
-						break dy;
+						continue dy;
 				}
 				
 				y = y2;
