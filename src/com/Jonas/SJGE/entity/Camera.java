@@ -1,5 +1,7 @@
 package com.Jonas.SJGE.entity;
 
+import java.util.List;
+
 import com.Jonas.SJGE.Game;
 import com.Jonas.SJGE.Main;
 import com.Jonas.SJGE.screen.Screen;
@@ -25,6 +27,16 @@ public class Camera extends Entity {
 		dy *= Math.round(CAM_SPEED * Main.getDeltaTime());
 		
 		move();
+		
+		if (game.input.getKeyDown('n')) {
+			List<Entity> entitiesInside = game.getEntitiesInside(x+xColOffs-16, y+yColOffs-16, x+xColOffs+sizeD+16, y+yColOffs+sizeD+16);
+			
+			for (Entity e : entitiesInside) {
+				if (e == this) continue;
+				
+				game.removeEntity(e);
+			}
+		}
 	}
 	
 	public boolean collide(Entity e) {

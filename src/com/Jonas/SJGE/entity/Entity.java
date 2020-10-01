@@ -8,7 +8,8 @@ public abstract class Entity {
 	public int x, y;
 	public int dx, dy;
 	protected Game game;
-	protected int xColOffs, yColOffs, sizeD = 16;
+	public int xColOffs, yColOffs;
+	public int sizeD = 16;
 	
 	public Entity(Game game) {
 		this.game = game;
