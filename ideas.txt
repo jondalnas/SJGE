@@ -1,0 +1,3 @@
+	- Multithreading
+	- Path-finding
+	- Better sub-pixel movement
